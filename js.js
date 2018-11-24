@@ -2,6 +2,7 @@ let animate_slow = 600;
 let animate_fast = 300;
 
 let MUTATIONS = {
+	adrenal_reaction: "Increased weapon damage and quick health regeneration at low HP. MAX HP -50",
 	chameleon: "Invisibility when unarmed and standing still",
 	bird_bones: "+4 INT, Falling speed slowed, -4 STR",
 	eagle_eye: "Critical damage +25%, +4 PER, -4 STR",
@@ -57,8 +58,8 @@ document.addEventListener("bossKilled", function (obj) {
 	let data = obj.detail;
 	attack(data, function (d) {
 		$("#rad-bar-fill").animate({ width: "0%" }, animate_fast, function () {
-			setTimeout(function () {
-				mutation(function () {
+			setTimeout( function () {
+				mutation( function () {
 					$("#rad-bar-fill").animate({ width: "100%" }, animate_slow, function () {
 						// complete
 					});
@@ -69,7 +70,7 @@ document.addEventListener("bossKilled", function (obj) {
 	// do a thing to get a mutation or something...
 });
 
-function attack(data, cb) {
+function attack (data, cb) {
 	if (data.message && data.message.damage && data.message.damage !== "") {
 		let val = parseInt(data.message.damage.replace(/\-|\+|\s/, ""), 0);
 		$("#rads-attack")
@@ -87,7 +88,7 @@ function attack(data, cb) {
 	}
 }
 
-function mutation(cb) {
+function mutation (cb) {
 	$(".hp-bg").css("opacity", 0);
 	$(".rads-bg").css("opacity", 0);
 
